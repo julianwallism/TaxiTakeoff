@@ -1,13 +1,26 @@
 [project]
 name = "taxitakeoff"
 version = "0.1.0"
-description = "Add your description here"
+description = "Flight data analysis and reporting tool for AENA airports"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "airportsdata>=20250706",
+    "fastparquet>=2024.11.0",
     "matplotlib>=3.10.3",
     "pandas>=2.3.0",
+    "pyarrow>=20.0.0",
     "pycountry>=24.6.1",
     "requests>=2.32.4",
 ]
+
+[project.scripts]
+fetch-data = "scripts.fetch_data:main"
+generate-plots = "scripts.generate_plots:main"
+send-report = "scripts.send_report:main"
+
+[tool.uv]
+package = true
+
+[tool.setuptools.packages.find]
+include = ["taxitakeoff*", "scripts*"]
